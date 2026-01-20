@@ -22,7 +22,7 @@ Albapipe es un proyecto para la construcción de un nodo con las siguientes cara
 - El proyecta utiliza como "cerebro" al microcontrolador Promicro. Este gestiona las funciones principales de gestión de los datos, recepción y envío de mensajes, gestión de la radio, ect.
 El equipo de radio elegido es el E22P por su relación de prestaciones (amplificador, presencia de filtro, ...). Auxiliarmente se cuenta con los sistemas TLV, que desconecta (aplica un reset en el microcontrolador)
 todo el sistema cuando la tensión desciende de 3.0 voltios y el microcontrolador ATTiny cuya función es resetear el equipo cada cierto tiempo (tiempo programable) ante eventuales bloqueos no esperados del
-microcontrolador principal. Un controlador de carga CN3791 gestiona la corriente que proviene del panel solar a las baterías. Un BMS por batería protegen a las mismas ante sobrecarga o cortocircuito. El GPS y el módulo de radio no funcionan a pleno rendimiento, o producen malfuncioanmiento si su alimentación no es de 5 V, por lo que se implementan dos convertidores DC-DC para alimentarlos.
+microcontrolador principal. Un controlador de carga CN3791 gestiona la corriente que proviene del panel solar a las baterías. Un BMS por batería protegen a las mismas ante sobrecarga o cortocircuito. El GPS y el módulo de radio no funcionan a pleno rendimiento, o producen malfuncioanmiento si su alimentación no es de 5 V, por lo que se implementan dos convertidores DC-DC para alimentarlos. Estos dos BOOST son apoyados con dos condensadores de 1000 uF en su entrada y salida para evitar que, en momentos de alta demanda de corriente, se produzca una caída de tensión.
 # BOM #
 La lista de materiales necesarios es la siguiente:
   - Componentes principales:
@@ -50,4 +50,4 @@ La lista de materiales necesarios es la siguiente:
 - Panel solar de 6 w / 9 w - 5 voltios.
 - Sujección tubo a pared metálica.
 
-
+# PROCESO DE FABRICACIÓN #
