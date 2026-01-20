@@ -1,5 +1,6 @@
 # Albapipe-Meshtastic-Node
-Nodo para tecnología Meshtastic de alta potencia preparado para introducir en un tubo.
+# PÁGINA EN CONSTRUCCIÓN / PCB EN PRUEBAS #
+Nodo para tecnología Meshtastic de hasta 1 w de potencia preparado para introducir en un tubo.
 
 Albapipe es un proyecto para la construcción de un nodo con las siguientes características:
 - Módulo de radio de 1 w.
@@ -18,7 +19,28 @@ Albapipe es un proyecto para la construcción de un nodo con las siguientes cara
   
 <img width="82" height="738" alt="image" src="https://github.com/user-attachments/assets/2c3a412f-103b-4c14-880a-8786cc1ae130" />                        <img width="82" height="728" alt="image" src="https://github.com/user-attachments/assets/a19dd270-b4d8-4887-952f-0f1ea349bbff" />
 
+# BOM #
+La lista de materiales necesarios es la siguiente:
+  - Componentes principales:
+- PCB Albapipe
+- Transmisor de radio:                     E22 o E22P (E22P-868M30S)
+- Conector de batería y solar:             2 x PA001-2P
+- Interruptores energía:                   2 x SS12D10-G5
+- Pulsadores de Reset / User:              2 x TC-1101T-C-B-B
+- Boost para el E22:
+- Opcional: Boost para el GPS:
+- Opcional: Supervisor de tensión:         TLV840MADL30DBVRQ1
+- Opcional: Conector de antena:            KH-SMA-P-8496-T.
+- Opcional: Reset programable.             ATTiny 13A-PU + C=100 nF + R10K
+- Opcional: Telemetría ambiental:          BME/BMP280
+- Opcional: Divisor de tensión:            2 x R 1M
+- Opcional: GPS:                           NNEO6MV2            
 
-
+  - Componentes auxiliares:
+- Tubo de PVC de 40 mm.
+- Tapón "cerrado" PVC para tubo de 40 mm.
+- Registro "tapón enroscable" de PVC para tubo de 40 mm.
+- Panel solar de 6 w / 9 w - 5 voltios.
+- Sujección tubo a pared metálica.
 
 
