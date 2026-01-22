@@ -50,4 +50,4 @@ La lista de materiales necesarios es la siguiente:
 - Panel solar de 6 w / 9 w - 5 voltios.
 - Sujección tubo a pared metálica.
 
-# PROCESO DE FABRICACIÓN #
+# PROCESO DE MONTAJE #
