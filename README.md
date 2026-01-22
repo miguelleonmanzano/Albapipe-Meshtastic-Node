@@ -29,6 +29,9 @@ La lista de materiales necesarios es la siguiente:
 - PCB Albapipe:                            Descargar Gerbers y encargar fabricación a JLCPC o NextPCB.
 - Microcontrolador:                        Promicro NRF52840
 - Transmisor de radio:                     E22 o E22P (E22P-868M30S)
+                
+  <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
+
 - Supervisor de corriente I2C:             INA3221
 - Controlador de carga:                    CN3791
 - Conector de batería y solar:             2 x PA001-2P
