@@ -1,5 +1,5 @@
 # Albapipe-Meshtastic-Node
-# V1 COMPROBADA Y FUNCIONANDO OK #
+# V1 COMPROBADA Y FUNCIONANDO OK - PÁGINA EN CONSTRUCCIÓN #
 Nodo para tecnología Meshtastic de hasta 1 w de potencia preparado para introducir en un tubo.
 
 Albapipe es un proyecto para la construcción de un nodo con las siguientes características:
