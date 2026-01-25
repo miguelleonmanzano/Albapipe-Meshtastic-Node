@@ -1,5 +1,5 @@
 # Albapipe-Meshtastic-Node
-# PÁGINA EN CONSTRUCCIÓN / PCB EN PRUEBAS #
+# V1 COMPROBADA Y FUNCIONANDO OK #
 Nodo para tecnología Meshtastic de hasta 1 w de potencia preparado para introducir en un tubo.
 
 Albapipe es un proyecto para la construcción de un nodo con las siguientes características:
@@ -48,9 +48,19 @@ La lista de materiales necesarios es la siguiente:
 
   - Componentes auxiliares:
 - Tubo de PVC de 40 mm.
-- Tapón "cerrado" PVC para tubo de 40 mm.
-- Registro "tapón enroscable" de PVC para tubo de 40 mm.
+- Tapón "cerrado" PVC para tubo de 50 mm.
+- Registro "tapón enroscable" de PVC para tubo de 50 mm.
 - Panel solar de 6 w / 9 w - 5 voltios.
 - Sujección tubo a pared metálica.
 
 # PROCESO DE MONTAJE #
+
+- Se instalarán los componenetes de menor a mayor tamaño. Se tendrá en cuenta que la temperatura del soldador debe ser menor para los pad más pequeños.
+- Programar el NRF según las instrucciones de la Web Flaseher de Meshtastic.
+- Programar el Attiny13 según el código e instrucciones siguientes:
+  https://github.com/incre77/attiny-reset
+  https://www.youtube.com/watch?v=Kr1L7YaRC0k
+  
+
+# PRUEBAS PREVIAS #
+- NO CONECTAR LA ALIMENTACIÓN SIN HABER INSTALADO PREVIAMENTE UNA ANTENA.
