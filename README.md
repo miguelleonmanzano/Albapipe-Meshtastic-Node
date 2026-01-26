@@ -1,4 +1,4 @@
-
+# PÁGINA EN CONSTRUCCIÓN (Y NO VÁLIDA) #
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
 Este proyecto describe el diseño de un **nodo Meshtastic solar completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
@@ -162,18 +162,17 @@ Base ideal para **telemetría energética** y optimización.
 
 | Bloque | Componente |
 |------|-----------|
-| MCU principal | nRF52840 |
-| Watchdog | ATtiny13A |
-| LoRa | E22‑868M30S |
-| GPS | NEO |
-| MPPT | CN3791 |
-| Boost 5 V | HW‑085 (×2) |
-| Regulador 3.3 V | LDO/Buck |
-| Supervisor | TLV840 |
-| Monitor | INA3221 |
-| Baterías | Li‑ion 1S3P |
-| Protección | BMS 1S |
-| RF | SMA + antena |
+| MCU principal | nRF52840 | Obligatorio |
+| Watchdog | ATtiny13A | Opcional |
+| LoRa | E22‑868M30S - E22P‑868M30S | Obligatorio |
+| GPS | NEO | Opcional |
+| MPPT | CN3791 | Obligatorio |
+| Boost 5 V | HW‑085 (×2) | Obligatorio |
+| Supervisor | TLV840 | Opcional |
+| Monitor | INA3221 | Opcional |
+| Baterías | Li‑ion 1S3P | Obligatorio (una al menos) |
+| Protección | BMS 1S | Opcional |
+| RF | SMA + antena | Opcional |
 
 ---
 
@@ -188,6 +187,128 @@ Este diseño persigue un nodo Meshtastic:
 - ✅ Reproducible y documentado
 
 Pensado para **despliegues reales**, no para laboratorio.
+
+
+## 📦 Bill of Materials (BOM) — Nodo Meshtastic Solar
+
+### 🧠 MCU principal
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U1 | Microcontrolador | nRF52840 | 1 |
+
+---
+
+### 📡 Radio LoRa
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U2 | Módulo LoRa | E22P‑868M30S | 1 |
+| J1 | Conector antena | Tipo **N hembra**, 50 Ω | 1 |
+| SW1 | Switch LoRa | SWITCH_E22P | 1 |
+
+---
+
+### 🛰️ GPS
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U3 | Módulo GPS | GY‑NEO6MV2 | 1 |
+| Q1 | MOSFET canal N | Lógico | 1 |
+| R1 | Resistencia | (según esquema) | 1 |
+| R2 | Resistencia | (según esquema) | 1 |
+
+---
+
+### 🔁 Watchdog hardware
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U4 | Microcontrolador | ATtiny13A | 1 |
+| JP1 | Selector tiempo | Header 3 pines | 1 |
+| C1 | Condensador | 100 nF | 1 |
+
+---
+
+### 🛡️ Supervisor de tensión
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U5 | Supervisor | TLV840 (~3.0 V) | 1 |
+| C2 | Condensador | 100 nF | 1 |
+
+---
+
+### 📊 Monitor de corriente
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U6 | Monitor I²C | INA3221 (Board) | 1 |
+| RSH1–RSH3 | Resistencias shunt | (según diseño) | 3 |
+
+---
+
+### 🔋 Cargador solar y baterías
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U7 | Cargador MPPT | CN3791 MPPT Charger Module | 1 |
+| B1–B3 | Baterías Li‑ion | 18650 / 21700 | 3 |
+| BMS1 | BMS | BMS 1S | 1 |
+
+---
+
+### ⚡ Regulación 3.3 V
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U8 | Regulador 3.3 V | LDO / Buck 3.3 V | 1 |
+| C3 | Condensador | 10–22 µF | 1 |
+| C4 | Condensador | 10–22 µF | 1 |
+
+---
+
+### ⚡ Step‑Up 5 V (GPS / E22)
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| U9 | Step‑Up 5 V | HW‑085 (MT3608) – GPS | 1 |
+| U10 | Step‑Up 5 V | HW‑085 (MT3608) – E22P | 1 |
+| C5 | Electrolítico | 1000 µF | 1 |
+| C6 | Cerámico | 10–22 µF | 1 |
+| C7 | Electrolítico bajo ESR | 470 µF | 1 |
+| C8 | Cerámico | 100 nF | 1 |
+| C9 | Electrolítico | 1000 µF | 1 |
+| C10 | Cerámico | 100 nF | 1 |
+
+---
+
+### 🔢 Medida de batería
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| R3 | Resistencia | (según cálculo) | 1 |
+| R4 | Resistencia | (según cálculo) | 1 |
+
+---
+
+### 🔌 Conectores
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| J2 | Conector batería | JST / Bornera | 1 |
+| J3 | Conector panel solar | JST / Bornera | 1 |
+| J4 | Header sensores | 3 pines | 1 |
+
+---
+
+### 🔔 Indicadores y control
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| F1 | Fusible | Polyfuse / Blade | 1 |
+| D1 | LED indicador | Rojo / Verde | 1 |
+| R5 | Resistencia | 1 kΩ – 4.7 kΩ | 1 |
+| SW2 | Pulsador | Reset momentáneo | 1 |
+
+---
+
+### 🧱 Mecánica
+| Ref | Componente | Modelo / Valor | Qty |
+|---|---|---|---:|
+| — | PCB | FR‑4 | 1 |
+| — | Encapsulado | Tubo PVC Ø50 mm | 1 |
 
 
 ## 🧱 Diseño preparado para encapsulado en tubo de PVC Ø50 mm
