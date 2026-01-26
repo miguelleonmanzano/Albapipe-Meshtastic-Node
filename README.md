@@ -1,16 +1,232 @@
-# Albapipe-Meshtastic-Node
-# V1 COMPROBADA Y FUNCIONANDO OK - PÁGINA EN CONSTRUCCIÓN #
-Nodo para tecnología Meshtastic de hasta 1 w de potencia preparado para introducir en un tubo.
 
-Albapipe es un proyecto para la construcción de un nodo con las siguientes características:
-- Módulo de radio de 1 w.
-- Controlador de bajo consumo y coste.
-- Monitorización simultánea de 3 consumos de corriente.
-- Reseteo automático por baja tensión (opcional).
-- Reseteo automático por tiempo configurable físicamente (opcional).
-- Monitorización de temperatura (opcional).
-- GPS (opcional).
-  
+# 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
+
+Este proyecto describe el diseño de un **nodo Meshtastic solar completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
+
+El diseño integra **gestión energética avanzada**, **separación de cargas**, **supervisión de tensión**, **monitorización de consumos** y un **watchdog hardware independiente**.
+
+---
+
+## 🧠 Enfoque y filosofía del diseño
+
+Este no es un nodo experimental. Está pensado para funcionar **meses o años sin intervención**, incluso en condiciones desfavorables.
+
+Principios clave:
+
+- ✅ **Meshtastic sin modificar** (firmware oficial en nRF52840)
+- ✅ Recuperación automática ante cuelgues mediante **hardware externo**
+- ✅ Aislamiento eléctrico entre bloques críticos
+- ✅ Gestión eficiente de energía solar + baterías
+- ✅ Arquitectura clara, modular y mantenible
+
+---
+
+## 🧩 Bloques funcionales del sistema
+
+### 🔋 Gestión energética
+- **Panel solar**
+- **Cargador MPPT CN3791**
+- **BMS 1S**
+- **Baterías Li‑ion 3,7 V en paralelo (1S3P)**
+- **Selector de fuentes / conectores de alimentación**
+
+### ⚡ Regulación de tensión
+- **Regulador 3.3 V** para lógica y sensores
+- **Boost 5 V independiente #1 (HW‑085)** → LoRa E22‑868M30S
+- **Boost 5 V independiente #2 (HW‑085)** → GPS
+- Enables por GPIO para reducción de consumo
+
+### 📡 Comunicaciones
+- **Radio LoRa E22‑868M30S** (868 MHz, SMA)
+- **GPS NEO** (u‑blox o compatible)
+- Interfaces dedicadas y separadas de la lógica
+
+### 🧠 Control y supervisión
+- **nRF52840** ejecutando Meshtastic
+- **ATtiny13A** como watchdog externo
+- **Supervisor TLV840 (~3.0 V)** para protección por batería baja
+
+### 📊 Monitorización
+- **INA3221 (I²C, 3 canales)** para:
+  - Corriente del panel solar
+  - Corriente de carga
+  - Consumo del sistema
+
+---
+
+## 🔋 Arquitectura de alimentación
+
+Panel Solar
+│
+┌───────────────┐
+│ MPPT CN3791   │
+└───────┬───────┘
+│
+┌──────────────────────────┐
+│ Li‑ion 1S3P (3.0–4.2 V)  │
+│ + BMS 1S                 │
+└────────┬────────┬────────┘
+│        │
+┌─────▼───┐ ┌──▼─────────┐
+│ 3.3 V   │ │ Boost 5 V  │
+│ Lógica  │ │ HW‑085 #1  │──► LoRa E22
+└─────────┘ └──┬─────────┘
+│
+┌────▼─────────┐
+│ Boost 5 V     │
+│ HW‑085 #2     │──► GPS NEO
+└──────────────┘
+
+### Motivación técnica
+- El **E22** presenta picos importantes en transmisión
+- El **GPS** es sensible a ruido y caídas de tensión
+- La separación de boosts evita interferencias mutuas
+- La lógica a 3.3 V queda aislada de transitorios de potencia
+
+---
+
+## 📡 Radio LoRa (E22‑868M30S)
+
+- Banda **EU_868**
+- Alimentación dedicada a **5 V**
+- Antena externa SMA
+- Control de estados (EN/BUSY/CS según configuración)
+
+Diseñado para **routers o repeaters Meshtastic solares**, priorizando enlace estable frente a consumo puntual.
+
+---
+
+## 🛰️ GPS
+
+- Módulo **NEO**
+- Alimentación dedicada a **5 V**
+- Encendido controlado por GPIO
+- Totalmente separado eléctricamente del LoRa
+
+Permite posicionamiento y telemetría sin comprometer la estabilidad del sistema.
+
+---
+
+## 🔁 Watchdog hardware independiente (ATtiny13A)
+
+El nodo integra un **watchdog físico externo**, completamente independiente del nRF52840.
+
+### ¿Por qué es necesario?
+- Un MCU no puede auto‑recuperarse si queda bloqueado
+- Meshtastic es estable, pero ningún firmware es inmune
+- La fiabilidad real exige **supervisión fuera del firmware**
+
+### Funcionamiento
+- El **ATtiny13A** permanece en *sleep* profundo
+- Se despierta periódicamente mediante temporizador interno
+- Genera un **pulso directo sobre RESET del nRF52840**
+
+### ⏱️ Periodos seleccionables por jumpers
+
+| PB2 | PB1 | Reset cada |
+|----:|----:|-----------|
+| 0 | 0 | **1 minuto** |
+| 0 | 1 | **6 horas** |
+| 1 | 0 | **12 horas** |
+| 1 | 1 | **24 horas** |
+
+- Pulso de reset: **200 ms (LOW)**
+- Consumo ultra bajo
+- Funciona incluso si el nRF está totalmente colgado
+
+---
+
+## 🛡️ Supervisor de tensión (TLV840)
+
+- Monitoriza la tensión de batería
+- Fuerza reset por debajo de ~**3.0 V**
+- Evita estados inestables al descargar la batería
+- Complementa al watchdog periódico
+
+---
+
+## 📊 Monitor de corriente (INA3221)
+
+- Bus **I²C**
+- Tres canales independientes
+- Permite instrumentar:
+  - Rendimiento del panel
+  - Eficiencia de carga
+  - Consumo real del nodo
+
+Base ideal para **telemetría energética** y optimización.
+
+---
+
+## 🧩 Resumen de módulos utilizados
+
+| Bloque | Componente |
+|------|-----------|
+| MCU principal | nRF52840 |
+| Watchdog | ATtiny13A |
+| LoRa | E22‑868M30S |
+| GPS | NEO |
+| MPPT | CN3791 |
+| Boost 5 V | HW‑085 (×2) |
+| Regulador 3.3 V | LDO/Buck |
+| Supervisor | TLV840 |
+| Monitor | INA3221 |
+| Baterías | Li‑ion 1S3P |
+| Protección | BMS 1S |
+| RF | SMA + antena |
+
+---
+
+## 🎯 Objetivo del proyecto
+
+Este diseño persigue un nodo Meshtastic:
+
+- ✅ Autónomo de verdad
+- ✅ Electrónicamente estable
+- ✅ Tolerante a fallos de software
+- ✅ Adecuado para energía solar
+- ✅ Reproducible y documentado
+
+Pensado para **despliegues reales**, no para laboratorio.
+
+
+## 🧱 Diseño preparado para encapsulado en tubo de PVC Ø50 mm
+
+El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo de PVC de fontanería de 50 mm de diámetro**, un formato muy utilizado en instalaciones de campo por su **robustez, disponibilidad y bajo coste**.
+
+### Justificación técnica
+
+- La **disposición lineal de los módulos** (baterías 1S3P, electrónica y radio) permite un **form factor alargado**, compatible con tubos estándar de Ø50 mm.
+- El uso de **módulos compactos** (E22, HW‑085, ATtiny13A, INA3221) y la ausencia de elementos voluminosos facilita el encapsulado cilíndrico.
+- La **antena externa SMA** puede sacarse axialmente por uno de los extremos sin comprometer la estanqueidad.
+- El diseño no depende de ventilación activa, lo que favorece un **encapsulado completamente sellado**.
+
+### Ventajas del encapsulado en tubo de PVC
+
+- ✅ **Alta resistencia mecánica** frente a golpes, vibraciones y fauna
+- ✅ **Excelente comportamiento frente a humedad, polvo y lluvia**
+- ✅ Fácil **sellado con tapones estándar** o racores
+- ✅ Integración sencilla en **postes, mástiles o enterrado parcial**
+- ✅ Coste muy bajo y materiales disponibles en cualquier ferretería
+- ✅ Discreción visual en entornos naturales o rurales
+
+Este enfoque convierte al nodo en una solución **ideal para despliegues permanentes en exterior**, especialmente en redes Meshtastic solares donde se prioriza **durabilidad, bajo mantenimiento y fiabilidad a largo plazo**.
+``
+
+---
+
+## 📝 Notas finales
+
+- Meshtastic se usa **sin modificar**
+- El repositorio documenta **hardware + fiabilidad**
+- Los archivos de fabricación se añaden aparte
+- Región objetivo: **EU_868**
+
+---
+
+## 📜 Licencia
+Ver archivo "License" adjunto.
+
 - El modelo en 2D es el siguiente:
   
 <img width="65" height="580" alt="image" src="https://github.com/user-attachments/assets/4cd5cd09-830d-455e-9147-86bbe93bbcb5" />   <img width="65" height="579" alt="image" src="https://github.com/user-attachments/assets/59884425-bf67-4e40-90b8-ab8811a152a3" />
@@ -18,49 +234,10 @@ Albapipe es un proyecto para la construcción de un nodo con las siguientes cara
 - El modelo en 3D quedaría como a continuación:
   
 <img width="82" height="738" alt="image" src="https://github.com/user-attachments/assets/2c3a412f-103b-4c14-880a-8786cc1ae130" />                        <img width="82" height="728" alt="image" src="https://github.com/user-attachments/assets/a19dd270-b4d8-4887-952f-0f1ea349bbff" />
-# FUNCIONAMIENTO BÁSICO #
-- El proyecta utiliza como "cerebro" al microcontrolador Promicro. Este gestiona las funciones principales de gestión de los datos, recepción y envío de mensajes, gestión de la radio, ect.
-El equipo de radio elegido es el E22P por su relación de prestaciones (amplificador, presencia de filtro, ...). Auxiliarmente se cuenta con los sistemas TLV, que desconecta (aplica un reset en el microcontrolador)
-todo el sistema cuando la tensión desciende de 3.0 voltios y el microcontrolador ATTiny cuya función es resetear el equipo cada cierto tiempo (tiempo programable) ante eventuales bloqueos no esperados del
-microcontrolador principal. Un controlador de carga CN3791 gestiona la corriente que proviene del panel solar a las baterías. Un BMS por batería protegen a las mismas ante sobrecarga o cortocircuito. El GPS y el módulo de radio no funcionan a pleno rendimiento, o producen malfuncioanmiento si su alimentación no es de 5 V, por lo que se implementan dos convertidores DC-DC para alimentarlos. Estos dos BOOST son apoyados con dos condensadores de 1000 uF en su entrada y salida para evitar que, en momentos de alta demanda de corriente, se produzca una caída de tensión.
-# BOM #
-La lista de materiales necesarios es la siguiente:
-  - Componentes principales:
-- PCB Albapipe:                            Descargar Gerbers y encargar fabricación a JLCPC o NextPCB.
-- Microcontrolador:                        Promicro NRF52840
-- Transmisor de radio:                     E22 o E22P (E22P-868M30S)
+
                 
   <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
 
-- Supervisor de corriente I2C:             INA3221
-- Controlador de carga:                    CN3791
-- Conector de batería y solar:             2 x PA001-2P
-- Interruptores energía:                   2 x SS12D10-G5
-- Pulsadores de Reset / User:              2 x TC-1101T-C-B-B  
-- Boost para el E22:                       Boost DC-DC 5V.
-- Opcional: Boost para el GPS:             Boost DC-DC 5V.
-- Opcional: Supervisor de tensión:         TLV840MADL30DBVRQ1
-- Opcional: Conector de antena:            KH-SMA-P-8496-T.
-- Opcional: Reset programable.             ATTiny 13A-PU + C=100 nF + R10K
-- Opcional: Telemetría ambiental:          BME/BMP280
-- Opcional: Divisor de tensión:            2 x R 1M
-- Opcional: GPS:                           NNEO6MV2            
 
-  - Componentes auxiliares:
-- Tubo de PVC de 40 mm.
-- Tapón "cerrado" PVC para tubo de 50 mm.
-- Registro "tapón enroscable" de PVC para tubo de 50 mm.
-- Panel solar de 6 w / 9 w - 5 voltios.
-- Sujección tubo a pared metálica.
 
-# PROCESO DE MONTAJE #
 
-- Se instalarán los componenetes de menor a mayor tamaño. Se tendrá en cuenta que la temperatura del soldador debe ser menor para los pad más pequeños.
-- Programar el NRF según las instrucciones de la Web Flaseher de Meshtastic.
-- Programar el Attiny13 según el código e instrucciones siguientes:
-  https://github.com/incre77/attiny-reset
-  https://www.youtube.com/watch?v=Kr1L7YaRC0k
-  
-
-# PRUEBAS PREVIAS #
-- NO CONECTAR LA ALIMENTACIÓN SIN HABER INSTALADO PREVIAMENTE UNA ANTENA.
