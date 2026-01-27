@@ -260,8 +260,6 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 <img width="174" height="331" alt="image" src="https://github.com/user-attachments/assets/8c9ab748-9ad4-4767-9609-ebd88a0f688e" />
 
-
-
 - El modelo en 2D es el siguiente:
   
 <img width="65" height="580" alt="image" src="https://github.com/user-attachments/assets/4cd5cd09-830d-455e-9147-86bbe93bbcb5" />   <img width="65" height="579" alt="image" src="https://github.com/user-attachments/assets/59884425-bf67-4e40-90b8-ab8811a152a3" />
@@ -270,17 +268,22 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
   
 <img width="82" height="738" alt="image" src="https://github.com/user-attachments/assets/2c3a412f-103b-4c14-880a-8786cc1ae130" />                        <img width="82" height="728" alt="image" src="https://github.com/user-attachments/assets/a19dd270-b4d8-4887-952f-0f1ea349bbff" />
 
+##  Errores de diseño NO CRÍTICOS. La versión V2 (en pruebas) no tendrá estos problemas.
+
+1 Error en footprint del BME280:
+<img width="132" height="106" alt="image" src="https://github.com/user-attachments/assets/006df5d3-2434-44e7-9d76-ecce2ab860a4" />
+2 Error en footprint de los Boost:
+<img width="227" height="185" alt="image" src="https://github.com/user-attachments/assets/83b7fcc4-5762-43ad-b387-3450cd85b1cb" />
+
                 
   <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
   
 
 - Primer modelo fabricado. El acabado no es el mejor al realizarle mcuhas pruebas:
 
-![20260124_105543](https://github.com/user-attachments/assets/8c0a5a24-dd9f-4dab-a8ea-179289a95af2)
+<img width="1129" height="235" alt="image" src="https://github.com/user-attachments/assets/a6f4d59a-29a9-4952-9f58-0cf3ba225eb3" />
 
-
-![20260124_105559](https://github.com/user-attachments/assets/d1126a7e-3ac0-4f86-8d85-f73c7574a4e1)
-
+<img width="1139" height="173" alt="image" src="https://github.com/user-attachments/assets/43170cff-4d78-4690-8fdd-6015380d292a" />
 
 
 ##  Ejemplo de instalación en tubo de 50 mm.
