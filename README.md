@@ -1,6 +1,6 @@
 
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
-# VERSIÓN 1 TESTADA OK ✅ 
+
 **Control de versiones:**
 | VERSIÓN | ESTADO | FECHA |
 |----:|----:|-----------|
