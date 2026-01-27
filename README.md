@@ -1,4 +1,4 @@
-# PÁGINA EN CONSTRUCCIÓN (Y NO VÁLIDA) #
+
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
 Este proyecto describe el diseño de un **nodo solar Meshtastic completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
