@@ -270,14 +270,13 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 ##  Errores de diseño NO CRÍTICOS. La versión V2 (en pruebas) no tendrá estos problemas.
 
-1 Error en footprint del BME280:
+- 1 Error en footprint del BME280:
 <img width="132" height="106" alt="image" src="https://github.com/user-attachments/assets/006df5d3-2434-44e7-9d76-ecce2ab860a4" />
-2 Error en footprint de los Boost:
+
+- 2 Error en footprint de los Boost:
 <img width="227" height="185" alt="image" src="https://github.com/user-attachments/assets/83b7fcc4-5762-43ad-b387-3450cd85b1cb" />
 
-                
-  <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
-  
+               
 
 - Primer modelo fabricado. El acabado no es el mejor al realizarle mcuhas pruebas:
 
@@ -288,7 +287,7 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 ##  Ejemplo de instalación en tubo de 50 mm.
 
-![20260125_091226](https://github.com/user-attachments/assets/74c84029-6056-4261-8927-71f06d45a7b8)
+<img width="341" height="638" alt="image" src="https://github.com/user-attachments/assets/2e7d3817-1c5f-4ce5-9f61-8dcdf8feee40" />
 
 <img width="550" height="300" alt="image" src="https://github.com/user-attachments/assets/8e5ded0c-d819-44a9-bd06-97684f2c9192" />
 
