@@ -1,5 +1,11 @@
 
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
+# VERSIÓN 1 TESTADA OK ✅ 
+**Control de versiones:**
+| VERSIÓN | ESTADO | FECHA |
+|----:|----:|-----------|
+| 1 | TESTADA ✅  | Enero 2026 |
+| 2 | 🚧 EN PRUEBA 🚧  | Enero 2026 |
 
 Este proyecto describe el diseño de un **nodo solar Meshtastic completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
 
@@ -270,10 +276,10 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 ##  Errores de diseño NO CRÍTICOS. La versión V2 (en pruebas) no tendrá estos problemas.
 
-- 1 Error en footprint del BME280:
+- 1 Error en footprint del BME280. Hay que forzar los pines:
 <img width="132" height="106" alt="image" src="https://github.com/user-attachments/assets/006df5d3-2434-44e7-9d76-ecce2ab860a4" />
 
-- 2 Error en footprint de los Boost:
+- 2 Error en footprint de los Boost: Hay que forzar los pines:
 <img width="227" height="185" alt="image" src="https://github.com/user-attachments/assets/83b7fcc4-5762-43ad-b387-3450cd85b1cb" />
 
                
