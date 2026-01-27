@@ -2,10 +2,10 @@
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
 **Control de versiones:**
-| VERSIÓN | ESTADO | FECHA |
-|----:|----:|-----------|
-| 1 | TESTADA ✅  | Enero 2026 |
-| 2 | 🚧 EN PRUEBA 🚧  | Enero 2026 |
+| VERSIÓN | ESTADO | FECHA | Cambios |
+|---------|--------|-------|---------|
+| V1      | TESTADA ✅  | Enero 2026 |  |
+| V2      | 🚧 EN PRUEBA 🚧  | Enero 2026 | Modificación de dos footprint que implicaban tener que forzar su entrada.Se mejora el circuito de alimentación al E22. Se añaden fusibles a las baterías. Se añade puerto I2C. Se modifican las lecturas de corriente del INA. Se modifica el interruptor "NODE SWITCH" para cortar toda la alimentación en lugar de la corriente de la MCU |
 
 Este proyecto describe el diseño de un **nodo solar Meshtastic completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
 
