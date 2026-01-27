@@ -184,14 +184,14 @@ Base ideal para **telemetría energética** y optimización.
 | 7  | BMS IC3, IC2, IC1 | BMS 1S 3.7V | 3 |
 | 8  | CONECTORES BATERÍA Y SOLAR | PA001-2P | 2 |
 | 9  | BOTONES USER Y RESET | TC-1101T-C-B-B | 2 |
-| 10 | R3, R2 | 10K | 2 |
+| 10 | GPS ENABLE / ATTINY RESET R3, R2 | 10K | 2 |
 | 12 | WATCHDOG TIMER U1 | ATTINY13A-PU | 1 |
-| 13 | U2 | 100 nF | 1 |
-| 14 | Q1 | SI2312 | 1 |
+| 13 | ATTINY RESET U2 | 100 nF | 1 |
+| 14 | GPS ENABLE Q1 | SI2312 | 1 |
+| 17 | GPS U6 | GPS NEO6MV2 | 1 |
 | 15 | SUPERVISOR DE TENSIÓN U5 | TLV840 | 1 |
 | 16 | INTERRUPTORES MCU Y SOLAR | SS12D10-ZG5 SWITCH | 2 |
-| 17 | GPS U6 | GPS NEO6MV2 | 1 |
-| 18 | C1, C2 | 1000uF | 2 |
+| 18 | MÓDULO BOOST C1, C2 | 1000uF | 2 |
 | 19 | CONECTOR ANTENA| KH-SMA-P-8496-T | 1 |
 | 20 | B+, B- | 1M | 2 |
 | 21 | TELEMETRÍA AMBIENTAL | BME280 | 1 |
@@ -199,14 +199,14 @@ Base ideal para **telemetría energética** y optimización.
 | 23 | TRANSMISOR LORA E22 / E22P | E22P-868M30S (UE) | 1 |
 | 24 | MCU | PRO_MICRO_NRF52840 | 1 |
 
-
+Todas las resistencias y condensadores SMD son tipo 1206.
 ---
 
 ### 🧱 Mecánica
 | Ref | Componente | Modelo / Valor | Qty |
 |---|---|---|---:|
 | — | PCB | FR‑4 | 1 |
-| — | Encapsulado | Tubo PVC Ø50 mm | 1 |
+| — | Encapsulado | Tubo PVC Ø50 mm, tapones fijos y enroscables | 1 |
 
 
 ## 🧱 Diseño preparado para encapsulado en tubo de PVC Ø50 mm
@@ -218,7 +218,7 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 - La **disposición lineal de los módulos** (baterías 1S3P, electrónica y radio) permite un **form factor alargado**, compatible con tubos estándar de Ø50 mm.
 - El uso de **módulos compactos** (E22, HW‑085, ATtiny13A, INA3221) y la ausencia de elementos voluminosos facilita el encapsulado cilíndrico.
 - La **antena externa SMA** puede sacarse axialmente por uno de los extremos sin comprometer la estanqueidad.
-- El diseño no depende de ventilación activa, lo que favorece un **encapsulado completamente sellado**.
+- El diseño no depende de ventilación activa, lo que favorece un **encapsulado completamente sellado**, aunque se recomienda instalar un tapón de ventilación para evitar sobrepresión o vacío.
 
 ### Ventajas del encapsulado en tubo de PVC
 
@@ -228,18 +228,6 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 - ✅ Integración sencilla en **postes, mástiles o enterrado parcial**
 - ✅ Coste muy bajo y materiales disponibles en cualquier ferretería
 - ✅ Discreción visual en entornos naturales o rurales
-
-Este enfoque convierte al nodo en una solución **ideal para despliegues permanentes en exterior**, especialmente en redes Meshtastic solares donde se prioriza **durabilidad, bajo mantenimiento y fiabilidad a largo plazo**.
-``
-
----
-
-## 📝 Notas finales
-
-- Meshtastic se usa **sin modificar**
-- El repositorio documenta **hardware + fiabilidad**
-- Los archivos de fabricación se añaden aparte
-- Región objetivo: **EU_868**
 
 ---
 
