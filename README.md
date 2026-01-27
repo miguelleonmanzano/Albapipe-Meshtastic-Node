@@ -126,7 +126,7 @@ El nodo integra un **watchdog físico externo**, completamente independiente del
 
 - Pulso de reset: **200 ms (LOW)**
 - Consumo ultra bajo
-- Funciona incluso si el nRF está totalmente colgado siempre que cuente con una mínima tensión de alimentación.
+- Envía la señal de reset siempre que cuente con una mínima tensión de alimentación.
   
 <img width="224" height="203" alt="image" src="https://github.com/user-attachments/assets/a1405204-e1c1-43c1-8cbd-a2a800cf0ded" />
 
