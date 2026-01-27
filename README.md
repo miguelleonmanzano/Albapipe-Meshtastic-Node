@@ -176,6 +176,8 @@ Base ideal para **telemetría energética** y optimización.
 ## 📦 Bill of Materials (BOM) — Nodo Meshtastic Solar
 
 
+| ID | Nombre | Modelo | Cantidad |
+|----|----------------------------------------------|----------------------------------------------|----------|
 | 0  | PCB ALBAPIPE V1 | ENCARGAR EN NEXTPCB o JLCPB | 1 |
 | 1  | SOPORTES BATTERY2, BATTERY3, BATTERY1 | BH-18650 | 3 |
 | 2  | SUPERVISOR CORRIENTE | INA3221 | 1 |
@@ -197,9 +199,10 @@ Base ideal para **telemetría energética** y optimización.
 | 18 | TELEMETRÍA AMBIENTAL | BME280 | 1 |
 | 19 | CARGADOR DE BATERÍAS | CN3791 MPPT Solar Charger Module | 1 |
 | 20 | TRANSMISOR LORA E22 / E22P | E22P-868M30S (UE) | 1 |
-| 21 | MCU | PRO_MICRO_NRF52840 | 1 
+| 21 | MCU | PRO_MICRO_NRF52840 | 1 |
 
-Todas las resistencias y condensadores SMD son tipo 1206.
+Todas las resistencias y condensadores SMD son de tipo 1206..
+
 ---
 
 ### 🧱 Mecánica
