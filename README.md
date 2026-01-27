@@ -262,6 +262,17 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
   
 <img width="322" height="220" alt="image" src="https://github.com/user-attachments/assets/7bee67bf-2da5-4c15-8cde-9b2e18ca3c4e" />
 
+- Programar el MCU según las instrucciones de la web oficial:
+
+- Programar el ATtiny según las instrucciones de este video:
+
+  https://youtu.be/Kr1L7YaRC0k?si=hs1bqmgaVvlqTXzZ
+
+  - El código es original del ATTiny incre777 y se encuentra en la siguiente página:
+
+  https://github.com/incre77/attiny-reset
+  
+
 - Se recomienda instalar el MCU sobre un zócalo. Esto permite su reemplazo (por avería, actualización, ...) de manera más sencilla:
 
 <img width="174" height="331" alt="image" src="https://github.com/user-attachments/assets/8c9ab748-9ad4-4767-9609-ebd88a0f688e" />
