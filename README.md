@@ -57,43 +57,29 @@ Principios clave:
 
 ## 🔋 Arquitectura de alimentación
 
-Panel Solar
-│
-┌───────────────┐
-│ MPPT CN3791   │
-└───────┬───────┘
-│
-┌──────────────────────────┐
-│ Li‑ion 1S3P (3.0–4.2 V)  │
-│ + BMS 1S                 │
-└────────┬────────┬────────┘
-│        │
-┌─────▼───┐ ┌──▼─────────┐
-│ 3.3 V   │ │ Boost 5 V  │
-│ Lógica  │ │ HW‑085 #1  │──► LoRa E22
-└─────────┘ └──┬─────────┘
-│
-┌────▼─────────┐
-│ Boost 5 V     │
-│ HW‑085 #2     │──► GPS NEO
-└──────────────┘
+Componentes principales
+
+- Panel Solar → Entrada fotovoltaica primaria.
+- MPPT CN3791 → Control de carga optimizada para baterías Li‑ion 1S.
+- Batería Li‑ion 1S3P (3.0–4.2 V) + BMS 1S → Almacenamiento y protección.
+- Rail 3.3 V (Lógica) → MCU/sensores de bajo consumo.
+- Boost 5 V HW‑085 #1 → Alimenta LoRa E22 / E22P
+- Boost 5 V HW‑085 #2 → Alimenta GPS NEO.
 
 ### Motivación técnica
+
 - El **E22** presenta picos importantes en transmisión
 - El **GPS** es sensible a ruido y caídas de tensión
 - La separación de boosts evita interferencias mutuas
 - La lógica a 3.3 V queda aislada de transitorios de potencia
-
+- De este modo se separan los railes de 5 V para aislar picos de corriente del GPS y la radio.
 ---
 
 ## 📡 Radio LoRa (E22‑868M30S)
 
-- Banda **EU_868**
+- Banda **868 / 915** 
 - Alimentación dedicada a **5 V**
 - Antena externa SMA
-- Control de estados (EN/BUSY/CS según configuración)
-
-Diseñado para **routers o repeaters Meshtastic solares**, priorizando enlace estable frente a consumo puntual.
 
 ---
 
@@ -122,6 +108,7 @@ El nodo integra un **watchdog físico externo**, completamente independiente del
 - Se despierta periódicamente mediante temporizador interno
 - Genera un **pulso directo sobre RESET del nRF52840**
 
+
 ### ⏱️ Periodos seleccionables por jumpers
 
 | PB2 | PB1 | Reset cada |
@@ -133,18 +120,27 @@ El nodo integra un **watchdog físico externo**, completamente independiente del
 
 - Pulso de reset: **200 ms (LOW)**
 - Consumo ultra bajo
-- Funciona incluso si el nRF está totalmente colgado
+- Funciona incluso si el nRF está totalmente colgado siempre que cuente con una mínima tensión de alimentación.
+  
+<img width="224" height="203" alt="image" src="https://github.com/user-attachments/assets/a1405204-e1c1-43c1-8cbd-a2a800cf0ded" />
+
 
 ---
 
 ## 🛡️ Supervisor de tensión (TLV840)
 
 - Monitoriza la tensión de batería
-- Fuerza reset por debajo de ~**3.0 V**
+- Fuerza la desconexión por debajo de ~**3.0 V**, remitiendo una señal de reset al MCU.
 - Evita estados inestables al descargar la batería
 - Complementa al watchdog periódico
 
----
+
+## 🛡️ Circuito divisor de tensión
+
+- Monitoriza la tensión de batería para que el NRF pueda interpretarla en tanto por ciento.
+
+
+  ---
 
 ## 📊 Monitor de corriente (INA3221)
 
@@ -153,7 +149,7 @@ El nodo integra un **watchdog físico externo**, completamente independiente del
 - Permite instrumentar:
   - Rendimiento del panel
   - Eficiencia de carga
-  - Consumo real del nodo
+  - Consumo del MCU. 
 
 Base ideal para **telemetría energética** y optimización.
 
@@ -174,134 +170,35 @@ Base ideal para **telemetría energética** y optimización.
 | Baterías | Li‑ion 1S3P | Obligatorio (una al menos) |
 | Protección | BMS 1S | Opcional |
 | RF | SMA + antena | Opcional |
-
+| Divisor de tensión | 1MOhm (x2) | Opcional |
 ---
-
-## 🎯 Objetivo del proyecto
-
-Este diseño persigue un nodo Meshtastic:
-
-- ✅ Autónomo de verdad
-- ✅ Electrónicamente estable
-- ✅ Tolerante a fallos de software
-- ✅ Adecuado para energía solar
-- ✅ Reproducible y documentado
-
-Pensado para **despliegues reales**, no para laboratorio.
-
 
 ## 📦 Bill of Materials (BOM) — Nodo Meshtastic Solar
 
-### 🧠 MCU principal
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U1 | Microcontrolador | nRF52840 | 1 |
+| ID | Nombre | Modelo | Cantidad |
+|----|------------|------|----------|
+| 1  | SOPORTES BATTERY2, BATTERY3, BATTERY1 | BH-18650 | 3 |
+| 2  | SUPERVISOR CORRIENTE | INA3221 | 1 |
+| 3  | E22_BOOST | DC_DC_BOOST1 | 1 |
+| 4  | GPS_BOOST | DC_DC_BOOST2 | 1 |
+| 7  | BMS IC3, IC2, IC1 | BMS 1S 3.7V | 3 |
+| 8  | CONECTORES BATERÍA Y SOLAR | PA001-2P | 2 |
+| 9  | BOTONES USER Y RESET | TC-1101T-C-B-B | 2 |
+| 10 | R3, R2 | 10K | 2 |
+| 12 | WATCHDOG TIMER U1 | ATTINY13A-PU | 1 |
+| 13 | U2 | 100 nF | 1 |
+| 14 | Q1 | SI2312 | 1 |
+| 15 | SUPERVISOR DE TENSIÓN U5 | TLV840 | 1 |
+| 16 | INTERRUPTORES MCU Y SOLAR | SS12D10-ZG5 SWITCH | 2 |
+| 17 | GPS U6 | GPS NEO6MV2 | 1 |
+| 18 | C1, C2 | 1000uF | 2 |
+| 19 | CONECTOR ANTENA| KH-SMA-P-8496-T | 1 |
+| 20 | B+, B- | 1M | 2 |
+| 21 | TELEMETRÍA AMBIENTAL | BME280 | 1 |
+| 22 | CARGADOR DE BATERÍAS | CN3791 MPPT Solar Charger Module | 1 |
+| 23 | TRANSMISOR LORA E22 / E22P | E22P-868M30S (UE) | 1 |
+| 24 | MCU | PRO_MICRO_NRF52840 | 1 |
 
----
-
-### 📡 Radio LoRa
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U2 | Módulo LoRa | E22P‑868M30S | 1 |
-| J1 | Conector antena | Tipo **N hembra**, 50 Ω | 1 |
-| SW1 | Switch LoRa | SWITCH_E22P | 1 |
-
----
-
-### 🛰️ GPS
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U3 | Módulo GPS | GY‑NEO6MV2 | 1 |
-| Q1 | MOSFET canal N | Lógico | 1 |
-| R1 | Resistencia | (según esquema) | 1 |
-| R2 | Resistencia | (según esquema) | 1 |
-
----
-
-### 🔁 Watchdog hardware
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U4 | Microcontrolador | ATtiny13A | 1 |
-| JP1 | Selector tiempo | Header 3 pines | 1 |
-| C1 | Condensador | 100 nF | 1 |
-
----
-
-### 🛡️ Supervisor de tensión
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U5 | Supervisor | TLV840 (~3.0 V) | 1 |
-| C2 | Condensador | 100 nF | 1 |
-
----
-
-### 📊 Monitor de corriente
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U6 | Monitor I²C | INA3221 (Board) | 1 |
-| RSH1–RSH3 | Resistencias shunt | (según diseño) | 3 |
-
----
-
-### 🔋 Cargador solar y baterías
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U7 | Cargador MPPT | CN3791 MPPT Charger Module | 1 |
-| B1–B3 | Baterías Li‑ion | 18650 / 21700 | 3 |
-| BMS1 | BMS | BMS 1S | 1 |
-
----
-
-### ⚡ Regulación 3.3 V
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U8 | Regulador 3.3 V | LDO / Buck 3.3 V | 1 |
-| C3 | Condensador | 10–22 µF | 1 |
-| C4 | Condensador | 10–22 µF | 1 |
-
----
-
-### ⚡ Step‑Up 5 V (GPS / E22)
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| U9 | Step‑Up 5 V | HW‑085 (MT3608) – GPS | 1 |
-| U10 | Step‑Up 5 V | HW‑085 (MT3608) – E22P | 1 |
-| C5 | Electrolítico | 1000 µF | 1 |
-| C6 | Cerámico | 10–22 µF | 1 |
-| C7 | Electrolítico bajo ESR | 470 µF | 1 |
-| C8 | Cerámico | 100 nF | 1 |
-| C9 | Electrolítico | 1000 µF | 1 |
-| C10 | Cerámico | 100 nF | 1 |
-
----
-
-### 🔢 Medida de batería
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| R3 | Resistencia | (según cálculo) | 1 |
-| R4 | Resistencia | (según cálculo) | 1 |
-
----
-
-### 🔌 Conectores
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| J2 | Conector batería | JST / Bornera | 1 |
-| J3 | Conector panel solar | JST / Bornera | 1 |
-| J4 | Header sensores | 3 pines | 1 |
-
----
-
-### 🔔 Indicadores y control
-| Ref | Componente | Modelo / Valor | Qty |
-|---|---|---|---:|
-| F1 | Fusible | Polyfuse / Blade | 1 |
-| D1 | LED indicador | Rojo / Verde | 1 |
-| R5 | Resistencia | 1 kΩ – 4.7 kΩ | 1 |
-| SW2 | Pulsador | Reset momentáneo | 1 |
 
 ---
 
