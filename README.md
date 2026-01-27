@@ -175,29 +175,29 @@ Base ideal para **telemetría energética** y optimización.
 
 ## 📦 Bill of Materials (BOM) — Nodo Meshtastic Solar
 
-| ID | Nombre | Modelo | Cantidad |
-|----|------------|------|----------|
+
+| 0  | PCB ALBAPIPE V1 | ENCARGAR EN NEXTPCB o JLCPB | 1 |
 | 1  | SOPORTES BATTERY2, BATTERY3, BATTERY1 | BH-18650 | 3 |
 | 2  | SUPERVISOR CORRIENTE | INA3221 | 1 |
 | 3  | E22_BOOST | DC_DC_BOOST1 | 1 |
 | 4  | GPS_BOOST | DC_DC_BOOST2 | 1 |
-| 7  | BMS IC3, IC2, IC1 | BMS 1S 3.7V | 3 |
-| 8  | CONECTORES BATERÍA Y SOLAR | PA001-2P | 2 |
-| 9  | BOTONES USER Y RESET | TC-1101T-C-B-B | 2 |
-| 10 | GPS ENABLE / ATTINY RESET R3, R2 | 10K | 2 |
-| 12 | WATCHDOG TIMER U1 | ATTINY13A-PU | 1 |
-| 13 | ATTINY RESET U2 | 100 nF | 1 |
-| 14 | GPS ENABLE Q1 | SI2312 | 1 |
-| 17 | GPS U6 | GPS NEO6MV2 | 1 |
-| 15 | SUPERVISOR DE TENSIÓN U5 | TLV840 | 1 |
-| 16 | INTERRUPTORES MCU Y SOLAR | SS12D10-ZG5 SWITCH | 2 |
-| 18 | MÓDULO BOOST C1, C2 | 1000uF | 2 |
-| 19 | CONECTOR ANTENA| KH-SMA-P-8496-T | 1 |
-| 20 | B+, B- | 1M | 2 |
-| 21 | TELEMETRÍA AMBIENTAL | BME280 | 1 |
-| 22 | CARGADOR DE BATERÍAS | CN3791 MPPT Solar Charger Module | 1 |
-| 23 | TRANSMISOR LORA E22 / E22P | E22P-868M30S (UE) | 1 |
-| 24 | MCU | PRO_MICRO_NRF52840 | 1 |
+| 5  | BMS IC3, IC2, IC1 | BMS 1S 3.7V | 3 |
+| 6  | CONECTORES BATERÍA Y SOLAR | PA001-2P | 2 |
+| 7  | BOTONES USER Y RESET | TC-1101T-C-B-B | 2 |
+| 8  | GPS ENABLE / ATTINY RESET R3, R2 | 10K | 2 |
+| 9  | WATCHDOG TIMER U1 | ATTINY13A-PU | 1 |
+| 10 | ATTINY RESET U2 | 100 nF | 1 |
+| 11 | GPS ENABLE Q1 | SI2312 | 1 |
+| 12 | GPS U6 | GPS NEO6MV2 | 1 |
+| 13 | SUPERVISOR DE TENSIÓN U5 | TLV840 | 1 |
+| 14 | INTERRUPTORES MCU Y SOLAR | SS12D10-ZG5 SWITCH | 2 |
+| 15 | MÓDULO BOOST C1, C2 | 1000uF | 2 |
+| 16 | CONECTOR ANTENA | KH-SMA-P-8496-T | 1 |
+| 17 | B+, B- | 1M | 2 |
+| 18 | TELEMETRÍA AMBIENTAL | BME280 | 1 |
+| 19 | CARGADOR DE BATERÍAS | CN3791 MPPT Solar Charger Module | 1 |
+| 20 | TRANSMISOR LORA E22 / E22P | E22P-868M30S (UE) | 1 |
+| 21 | MCU | PRO_MICRO_NRF52840 | 1 
 
 Todas las resistencias y condensadores SMD son tipo 1206.
 ---
@@ -231,8 +231,26 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 ---
 
-## 📜 Licencia
-Ver archivo "License" adjunto.
+
+
+##  FABRICACIÓN
+
+##  IMPORTANTE ANTES DE COMENZAR.
+
+- El sistema no está protegido ante inversión de polaridad de baterías. Tener la máxima precaución para respetar la polaridad impresa en la placa y los soportes.
+- NO alimentar la PCB sin instalar una antena en el módulo PCB.
+- Ajustar la temperatura del soldador en función del componente. Por ejemplo, las conexiones a los soportes de batería requerirán mucha más temperatura que los componentes SMD o los pad de pequeño tamaño.
+
+##  Proceso de fabricación de la PCB.
+
+- Soldar en este orden:
+- Componentes SMD.
+- Componentes de menor tamaño.
+- Resto de módulos.
+- Soportes de baterías.
+- Se recomienda instalar cinta aislante entre el E22 / E22P y la placa, para evitar contactos involuntarios con las conexiones a la placa de la otra cara de la misma.
+<img width="644" height="441" alt="image" src="https://github.com/user-attachments/assets/7bee67bf-2da5-4c15-8cde-9b2e18ca3c4e" />
+
 
 - El modelo en 2D es el siguiente:
   
@@ -245,6 +263,7 @@ Ver archivo "License" adjunto.
                 
   <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
 
-
+## 📜 Licencia
+Ver archivo "License" adjunto.
 
 
