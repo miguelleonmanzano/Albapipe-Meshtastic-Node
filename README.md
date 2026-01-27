@@ -247,9 +247,16 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 - Componentes SMD.
 - Componentes de menor tamaño.
 - Resto de módulos.
+- Conectores.
 - Soportes de baterías.
 - Se recomienda instalar cinta aislante entre el E22 / E22P y la placa, para evitar contactos involuntarios con las conexiones a la placa de la otra cara de la misma.
-<img width="644" height="441" alt="image" src="https://github.com/user-attachments/assets/7bee67bf-2da5-4c15-8cde-9b2e18ca3c4e" />
+  
+<img width="322" height="220" alt="image" src="https://github.com/user-attachments/assets/7bee67bf-2da5-4c15-8cde-9b2e18ca3c4e" />
+
+- Se recomienda instalar el MCU sobre un zócalo. Esto permite su reemplazo (por avería, actualización, ...) de manera más sencilla:
+
+<img width="174" height="331" alt="image" src="https://github.com/user-attachments/assets/8c9ab748-9ad4-4767-9609-ebd88a0f688e" />
+
 
 
 - El modelo en 2D es el siguiente:
@@ -262,6 +269,23 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
                 
   <img width="218" height="151" alt="Captura de pantalla 2026-01-22 125530" src="https://github.com/user-attachments/assets/468b9000-0bbb-484d-a67e-cf004cad992b" />
+  
+
+- Primer modelo fabricado. El acabado no es el mejor al realizarle mcuhas pruebas:
+
+![20260124_105543](https://github.com/user-attachments/assets/8c0a5a24-dd9f-4dab-a8ea-179289a95af2)
+
+
+![20260124_105559](https://github.com/user-attachments/assets/d1126a7e-3ac0-4f86-8d85-f73c7574a4e1)
+
+
+
+##  Ejemplo de instalación en tubo de 50 mm.
+
+![20260125_091226](https://github.com/user-attachments/assets/74c84029-6056-4261-8927-71f06d45a7b8)
+
+<img width="550" height="300" alt="image" src="https://github.com/user-attachments/assets/8e5ded0c-d819-44a9-bd06-97684f2c9192" />
+
 
 ## 📜 Licencia
 Ver archivo "License" adjunto.
