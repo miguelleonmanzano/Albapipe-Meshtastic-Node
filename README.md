@@ -1,7 +1,7 @@
 # PÁGINA EN CONSTRUCCIÓN (Y NO VÁLIDA) #
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
-Este proyecto describe el diseño de un **nodo Meshtastic solar completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
+Este proyecto describe el diseño de un **nodo solar Meshtastic completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
 
 El diseño integra **gestión energética avanzada**, **separación de cargas**, **supervisión de tensión**, **monitorización de consumos** y un **watchdog hardware independiente**.
 
@@ -13,7 +13,7 @@ Este no es un nodo experimental. Está pensado para funcionar **meses o años si
 
 Principios clave:
 
-- ✅ **Meshtastic sin modificar** (firmware oficial en nRF52840)
+- ✅ **Firmware Meshtastic sin modificar** (firmware oficial)
 - ✅ Recuperación automática ante cuelgues mediante **hardware externo**
 - ✅ Aislamiento eléctrico entre bloques críticos
 - ✅ Gestión eficiente de energía solar + baterías
@@ -31,19 +31,17 @@ Principios clave:
 - **Selector de fuentes / conectores de alimentación**
 
 ### ⚡ Regulación de tensión
-- **Regulador 3.3 V** para lógica y sensores
-- **Boost 5 V independiente #1 (HW‑085)** → LoRa E22‑868M30S
-- **Boost 5 V independiente #2 (HW‑085)** → GPS
-- Enables por GPIO para reducción de consumo
+- **Salida regulada desde el NRF a 3.3 V** para lógica y sensores
+- **Boost 5 V independiente #1 (HW‑085)** → Para el módulo de radio LoRa E22 / E22P
+- **Boost 5 V independiente #2 (HW‑085)** → GPS. Con "enable" por GPIO para reducción de consumo
 
 ### 📡 Comunicaciones
-- **Radio LoRa E22‑868M30S** (868 MHz, SMA)
-- **GPS NEO** (u‑blox o compatible)
-- Interfaces dedicadas y separadas de la lógica
+- **Radio LoRa E22 / E22P** con salida a conectores IPEX o SMA.
+- **GPS NEO** u otros compatibles.
 
 ### 🧠 Control y supervisión
 - **nRF52840** ejecutando Meshtastic
-- **ATtiny13A** como watchdog externo
+- **ATtiny13A** como watchdog externo, con reset automático preconfigurable
 - **Supervisor TLV840 (~3.0 V)** para protección por batería baja
 
 ### 📊 Monitorización
@@ -51,7 +49,10 @@ Principios clave:
   - Corriente del panel solar
   - Corriente de carga
   - Consumo del sistema
-
+- **BME/BMP 680** para:
+  - Temperatura
+  - Humedad
+  - Presión barométrica
 ---
 
 ## 🔋 Arquitectura de alimentación
