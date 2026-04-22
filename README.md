@@ -1,4 +1,4 @@
-<img width="720" height="1280" alt="photo_5929334388472614747_y" src="https://github.com/user-attachments/assets/583569c7-450d-4b13-a8dc-7da2fc18cc59" />
+
 
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
