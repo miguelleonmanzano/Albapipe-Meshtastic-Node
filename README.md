@@ -5,7 +5,8 @@
 | VERSIÓN | ESTADO | FECHA | Cambios |
 |---------|--------|-------|---------|
 | V1      | TESTADA ✅  | Enero 2026 |  |
-| V2      | 🚧 EN PRUEBA 🚧  | Enero 2026 | - Modificación de dos footprint que implicaban tener que forzar su entrada. - Se mejora el circuito de alimentación al E22.   - Se añaden fusibles a las baterías.   - Se añade puerto I2C.   - Se modifican las lecturas de corriente del INA.   - Se modifica el interruptor "NODE SWITCH" para cortar toda la alimentación en lugar de la corriente de la MCU. |
+| V2      | TESTADA ✅  | Abril 2026 |  - Se mejora el circuito de alimentación al E22.  - Se añade puerto I2C. - Se modifica el interruptor "NODE SWITCH" para cortar toda la alimentación en lugar de la corriente de la MCU. |
+| V3      | 🚧 EN PRUEBA 🚧  | - Modificación de dos footprint que implicaban tener que forzar su entrada.- Modificación de la PCB para no tener que seccionar dos pines al TLV.
 
 Este proyecto describe el diseño de un **nodo solar Meshtastic completamente autónomo**, concebido para **despliegues reales en campo**, con especial énfasis en **fiabilidad eléctrica**, **tolerancia a fallos** y **estabilidad a largo plazo**.
 
