@@ -286,17 +286,17 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
   
 <img width="82" height="738" alt="image" src="https://github.com/user-attachments/assets/2c3a412f-103b-4c14-880a-8786cc1ae130" />                        <img width="82" height="728" alt="image" src="https://github.com/user-attachments/assets/a19dd270-b4d8-4887-952f-0f1ea349bbff" />
 
-##  Errores de diseño NO CRÍTICOS. La versión V2 (en pruebas) no tendrá estos problemas.
+##  Errores de diseño NO CRÍTICOS. La versión V3 (en pruebas) no tendrá estos problemas.
 
-- 1 Error en footprint del BME280. Hay que forzar los pines:
-<img width="132" height="106" alt="image" src="https://github.com/user-attachments/assets/006df5d3-2434-44e7-9d76-ecce2ab860a4" />
 
-- 2 Error en footprint de los Boost: Hay que forzar los pines:
+- 1 Error en footprint de los Boost: Hay que forzar los pines:
 <img width="227" height="185" alt="image" src="https://github.com/user-attachments/assets/83b7fcc4-5762-43ad-b387-3450cd85b1cb" />
+- TLV 840. NO CONECTAR (pueden cortarse directamente) los pines 4 y 5. Pueden quedar flotantes sin problema.
 
-               
+ <img width="237" height="175" alt="Captura de pantalla 2026-04-22 140355" src="https://github.com/user-attachments/assets/3bc5a4be-931e-4df0-b783-0c2f6ee9fb78" />              
 
 - Primer modelo fabricado. El acabado no es el mejor al realizarle mcuhas pruebas:
+
 
 <img width="1129" height="235" alt="image" src="https://github.com/user-attachments/assets/a6f4d59a-29a9-4952-9f58-0cf3ba225eb3" />
 
