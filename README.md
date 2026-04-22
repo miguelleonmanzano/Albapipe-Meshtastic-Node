@@ -12,6 +12,8 @@ Este proyecto describe el diseño de un **nodo solar Meshtastic completamente au
 
 El diseño integra **gestión energética avanzada**, **separación de cargas**, **supervisión de tensión**, **monitorización de consumos** y un **watchdog hardware independiente**.
 
+<img width="720" height="1280" alt="9d5aa8c0-4cf8-4c3e-98a6-9185abaf7ba4" src="https://github.com/user-attachments/assets/a22831f3-7987-42c3-83b0-f339d8ec6ac1" />
+
 ---
 
 ## 🧠 Enfoque y filosofía del diseño
@@ -291,7 +293,8 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 - 1 Error en footprint de los Boost: Hay que forzar los pines:
 <img width="227" height="185" alt="image" src="https://github.com/user-attachments/assets/83b7fcc4-5762-43ad-b387-3450cd85b1cb" />
-- TLV 840. NO CONECTAR (pueden cortarse directamente) los pines 4 y 5. Pueden quedar flotantes sin problema.
+
+- 2 TLV 840. NO CONECTAR (pueden cortarse directamente) los pines 4 y 5. Pueden quedar flotantes sin problema.
 
  <img width="237" height="175" alt="Captura de pantalla 2026-04-22 140355" src="https://github.com/user-attachments/assets/3bc5a4be-931e-4df0-b783-0c2f6ee9fb78" />              
 
