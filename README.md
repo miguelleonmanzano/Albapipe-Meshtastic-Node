@@ -1,3 +1,4 @@
+<img width="720" height="1280" alt="photo_5929334388472614747_y" src="https://github.com/user-attachments/assets/583569c7-450d-4b13-a8dc-7da2fc18cc59" />
 
 # 🌞 ALbaPipe. Nodo Meshtastic Solar Autónomo y Robusto  
 
@@ -63,6 +64,8 @@ Principios clave:
   - Humedad
   - Presión barométrica
 ---
+
+<img width="720" height="1280" alt="photo_5929334388472614747_y" src="https://github.com/user-attachments/assets/949114f4-743d-4c55-bc30-826e5328cb5d" />
 
 ## 🔋 Arquitectura de alimentación
 
