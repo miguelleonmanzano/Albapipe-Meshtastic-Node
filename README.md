@@ -301,13 +301,19 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
  <img width="237" height="175" alt="Captura de pantalla 2026-04-22 140355" src="https://github.com/user-attachments/assets/3bc5a4be-931e-4df0-b783-0c2f6ee9fb78" />              
 
-- Primer modelo fabricado. El acabado no es el mejor al realizarle mcuhas pruebas:
+- Primer modelo fabricado de AlbaPipe v1. El acabado no es el mejor al realizarle mcuhas pruebas:
 
 
 <img width="1129" height="235" alt="image" src="https://github.com/user-attachments/assets/a6f4d59a-29a9-4952-9f58-0cf3ba225eb3" />
 
 <img width="1139" height="173" alt="image" src="https://github.com/user-attachments/assets/43170cff-4d78-4690-8fdd-6015380d292a" />
 
+- Primer modelo fabricado de AlbaPipe v2.
+
+  <img width="2268" height="4032" alt="20260501_175208 (1)" src="https://github.com/user-attachments/assets/7307b954-d074-4250-9c9b-8338ed6c8ea4" />
+
+  
+<img width="2268" height="4032" alt="20260501_175156" src="https://github.com/user-attachments/assets/8322baf8-5d5b-4889-9527-c1e3539bb349" />
 
 ##  Ejemplo de instalación en tubo de 50 mm.
 
