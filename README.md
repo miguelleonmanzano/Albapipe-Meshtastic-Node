@@ -325,6 +325,21 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
 
 <img width="2268" height="4032" alt="20260501_175941" src="https://github.com/user-attachments/assets/ff601571-c1c8-49a4-bfb6-f7dcafee8546" />
 
+##  Comprobación de la calidad de los enlaces.
+
+Nunca deben tomarse los "traces" como referencias precisas de conexión y solo como de aproximación.
+
+AlbaPipe V2.
+Enlace de 30 Km, con LOS directa.
+
+<img width="1061" height="1126" alt="Screenshot_20260430_172956_Meshtastic" src="https://github.com/user-attachments/assets/f8006292-792a-48b0-89a7-e548c1742b11" />
+
+AlbaPipe V2.
+Enlace de 55 Km, con LOS directa.
+
+<img width="1080" height="1413" alt="Screenshot_20260502_005840_Meshtastic" src="https://github.com/user-attachments/assets/0e01c5ac-b8e3-4ff7-82c9-256f3bbdfc44" />
+
+
 
 ## 📜 Licencia
 Ver archivo "License" adjunto.
