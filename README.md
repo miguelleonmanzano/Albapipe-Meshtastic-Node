@@ -315,11 +315,15 @@ El nodo ha sido concebido desde el inicio para poder **introducirse en un tubo d
   
 <img width="2268" height="4032" alt="20260501_175156" src="https://github.com/user-attachments/assets/8322baf8-5d5b-4889-9527-c1e3539bb349" />
 
-##  Ejemplo de instalación en tubo de 50 mm.
+##  Ejemplo de instalación en tubo de 50 mm., con antena exterior.
 
 <img width="341" height="638" alt="image" src="https://github.com/user-attachments/assets/2e7d3817-1c5f-4ce5-9f61-8dcdf8feee40" />
 
 <img width="550" height="300" alt="image" src="https://github.com/user-attachments/assets/8e5ded0c-d819-44a9-bd06-97684f2c9192" />
+
+##  Ejemplo de instalación en tubo de 50 mm., con la antena en el interior. ES NECESARIO comprobar SWR (<2) e impedancia (50ohm +- 8 ohm aprox) de la antena dentro del tubo a utilizar. NOTA: Puede comprarse tubo de presión y de evacuación. Este último es más dieléctrico y presenta menos problemas de reflexión.
+
+<img width="2268" height="4032" alt="20260501_175941" src="https://github.com/user-attachments/assets/ff601571-c1c8-49a4-bfb6-f7dcafee8546" />
 
 
 ## 📜 Licencia
