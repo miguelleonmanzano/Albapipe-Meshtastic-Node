@@ -146,6 +146,12 @@ El nodo integra un **watchdog físico externo**, completamente independiente del
 - Evita estados inestables al descargar la batería
 - Complementa al watchdog periódico
 
+Este dispositivo dispone de un umbral fijo de fábrica de 3,0 V, determinado por la referencia del componente (sufijo “30”), y no configurable en la aplicación.
+Cuando la tensión de la batería desciende por debajo de este valor, el TLV840 fuerza la señal RESET activa en bajo, manteniendo el microcontrolador en estado de reset.
+El TLV840 incorpora una histéresis interna típica del 5 %, lo que evita oscilaciones del reset ante pequeñas variaciones de tensión.
+Debido a esta histéresis, una vez activado el reset, el microcontrolador permanece bloqueado incluso aunque la tensión vuelva a superar los 3,0 V.
+La liberación del reset solo se produce cuando la alimentación alcanza aproximadamente 3,15 V (3,0 V + 5 %).
+Este comportamiento garantiza que el microcontrolador solo arranque cuando la tensión de alimentación es suficientemente estable, evitando brownouts, ejecuciones erráticas o corrupción de memoria, y mejorando la fiabilidad general del sistema.
 
 ## 🛡️ Circuito divisor de tensión
 
